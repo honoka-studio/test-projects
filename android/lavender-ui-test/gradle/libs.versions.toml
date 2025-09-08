@@ -1,0 +1,26 @@
+[versions]
+# project modules version
+p-app = "1.0.0-dev"
+pvc-app = "1"
+
+# gradle plugins version
+gp-android-application = "8.11.1"
+gp-honoka-android = "1.0.0"
+
+# android related version
+a-compile-sdk = "36"
+a-min-sdk = "26"
+
+# dependencies version
+d-kotlin = "2.2.0"
+d-kotlin-coroutines = "1.10.2"
+d-honoka-android-utils = "1.1.0"
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "gp-android-application" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "d-kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "d-kotlin" }
+honoka-android = { id = "de.honoka.gradle.plugin.android", version.ref = "gp-honoka-android" }
+
+[libraries]
+honoka-android-utils = { module = "de.honoka.sdk:honoka-android-utils", version.ref = "d-honoka-android-utils" }
