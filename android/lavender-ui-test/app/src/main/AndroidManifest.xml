@@ -5,14 +5,14 @@
                  android:dataExtractionRules="@xml/data_extraction_rules"
                  android:fullBackupContent="@xml/backup_rules"
                  android:icon="@mipmap/ic_launcher"
-                 android:label="@string/app_name"
                  android:roundIcon="@mipmap/ic_launcher_round"
-                 android:supportsRtl="true"
-                 android:theme="@style/Theme.LavenderUITest">
+                 android:theme="@style/Theme.AppDefault"
+                 android:label="Lavender UI Test"
+                 android:supportsRtl="true">
 
-        <activity android:name=".MainActivity"
-                  android:exported="true"
-                  android:theme="@style/Theme.LavenderUITest">
+        <activity android:name=".activity.MainActivity"
+                  android:theme="@style/Theme.AppDefault"
+                  android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
