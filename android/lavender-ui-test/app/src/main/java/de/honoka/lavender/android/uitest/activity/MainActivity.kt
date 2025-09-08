@@ -3,74 +3,61 @@ package de.honoka.lavender.android.uitest.activity
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import de.honoka.lavender.android.uitest.ui.AppDefaultTheme
+import androidx.compose.ui.unit.sp
+import de.honoka.lavender.android.uitest.ui.style.AppDefaultTheme
+import de.honoka.lavender.android.uitest.ui.style.Fonts
+import de.honoka.sdk.util.android.basic.initGlobalComponents
+import de.honoka.sdk.util.android.basic.launchOnIo
+import de.honoka.sdk.util.android.ui.fullScreen
+import de.honoka.sdk.util.android.ui.switchActivity
+import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        fullScreen()
         setContent {
             MainActivityView()
         }
+        initGlobalComponents()
+        launchOnIo {
+            //init可能是一个耗时的操作，故在IO线程中执行，防止阻塞UI线程
+            initApplication()
+            switchActivity(HomeActivity::class)
+        }
+    }
+
+    private suspend fun initApplication() {
+        delay(1000)
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun MainActivityView() {
-    var dark by remember { mutableStateOf(false) }
-    AppDefaultTheme(dark) {
-        var selectedIndex by remember { mutableIntStateOf(0) }
-        val items = listOf("首页", "设置")
-        Scaffold(
+    AppDefaultTheme {
+        Box(
             modifier = Modifier.fillMaxSize(),
-            //containerColor = Color(0xFFE8F5E9),
-            bottomBar = {
-                NavigationBar {
-                    items.forEachIndexed { index, item ->
-                        NavigationBarItem(
-                            selected = selectedIndex == index,
-                            onClick = {
-                                selectedIndex = index
-                                dark = !dark
-                            },
-                            label = { Text(item) },
-                            icon = { /* 可添加图标 */ }
-                        )
-                    }
-                }
-            }
+            contentAlignment = Alignment.Center
         ) {
-            Column(Modifier.padding(it)) {
-                when(selectedIndex) {
-                    0 -> HomeScreen()
-                    1 -> SettingsScreen()
-                }
-            }
+            Text(
+                "Lavender",
+                style = TextStyle(
+                    fontFamily = Fonts.kunstler,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 70.sp
+                )
+            )
         }
     }
-}
-
-@Composable
-private fun HomeScreen() {
-    repeat(50) {
-        Text("这是首页 $it")
-    }
-}
-
-@Composable
-private fun SettingsScreen() {
-    Text("这是设置页")
 }
