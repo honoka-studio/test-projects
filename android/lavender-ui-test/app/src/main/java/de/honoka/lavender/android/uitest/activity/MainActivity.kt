@@ -31,7 +31,6 @@ class MainActivity : ComponentActivity() {
         }
         initGlobalComponents()
         launchOnIo {
-            //init可能是一个耗时的操作，故在IO线程中执行，防止阻塞UI线程
             initApplication()
             switchActivity(HomeActivity::class)
         }
@@ -47,8 +46,8 @@ class MainActivity : ComponentActivity() {
 private fun MainActivityView() {
     AppDefaultTheme {
         Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
+            Modifier.fillMaxSize(),
+            Alignment.Center
         ) {
             Text(
                 "Lavender",
