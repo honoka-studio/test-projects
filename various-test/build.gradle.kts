@@ -1,49 +1,59 @@
-import de.honoka.gradle.buildsrc.Versions
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.nio.charset.StandardCharsets
 
 plugins {
-    @Suppress("RemoveRedundantQualifierName")
-    val versions = de.honoka.gradle.buildsrc.Versions
-    //plugins
     java
-    kotlin("jvm") version versions.kotlin
+    `java-library`
+    `maven-publish`
+    alias(libs.plugins.kotlin)
+    alias(libs.plugins.kotlin.lombok)
+    alias(libs.plugins.honoka.basic)
 }
 
 group = "de.honoka.test"
-version = "1.0-SNAPSHOT"
+version = libs.versions.p.root.get()
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = sourceCompatibility
+    toolchain.languageVersion = JavaLanguageVersion.of(17)
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}")
-    implementation("de.honoka.sdk:honoka-kotlin-utils:1.1.2-dev")
+    implementation(libs.honoka.kotlin.utils)
     implementation("net.java.dev.jna:jna-platform:5.13.0")
     implementation("com.sobte.cqp:jcq:1.2.7")
     implementation("com.baomidou:mybatis-plus:3.5.2")
-    "org.projectlombok:lombok:1.18.26".let {
-        compileOnly(it)
-        annotationProcessor(it)
-    }
     //Test
     implementation("junit:junit:4.13")
 }
 
+honoka.basic {
+    dependencies {
+        kotlin()
+        lombok()
+    }
+}
+
 tasks {
-    compileJava {
-        options.encoding = StandardCharsets.UTF_8.name()
+    withType<JavaCompile> {
+        options.run {
+            encoding = StandardCharsets.UTF_8.name()
+            val compilerArgs = compilerArgs as MutableCollection<String>
+            compilerArgs += listOf("-parameters")
+        }
     }
 
     withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = java.sourceCompatibility.toString()
+        withType<KotlinCompile> {
+            compilerOptions {
+                freeCompilerArgs.addAll("-Xjsr305=strict", "-Xjvm-default=all")
+            }
+        }
     }
 
-    test {
+    withType<Test> {
         useJUnitPlatform()
     }
 }
+
+libs.versions.d.kotlin.coroutines
+libs.versions.d.lombok

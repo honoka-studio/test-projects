@@ -1,12 +1,34 @@
 package de.honoka.test.various
 
-import de.honoka.sdk.util.kotlin.basic.exception
 import de.honoka.sdk.util.kotlin.various.RuntimeUtilsExt
-import de.honoka.sdk.util.various.RuntimeUtils
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
-import java.nio.charset.StandardCharsets
 
 class KotlinAllTest {
+
+    @Test
+    fun test22() {
+        runBlocking {
+            println(this)
+            launch {
+                println(this)
+                launch {
+                    println(this)
+                }
+            }
+        }
+    }
+
+    @Test
+    fun test21() {
+        val s = "vaeivubediavbaeiufvbwbsrtniobntib"
+        val map = s.groupingBy { it }.eachCount()
+        val max = map.maxBy { it.value }
+        println(map)
+        println(max)
+        println(max.key)
+    }
 
     @Test
     fun test20() {
@@ -24,7 +46,7 @@ class KotlinAllTest {
     @Test
     fun test19() {
         try {
-            exception("abc")
+            error("abc")
         } catch(t: Throwable) {
             println("catch")
             throw t
