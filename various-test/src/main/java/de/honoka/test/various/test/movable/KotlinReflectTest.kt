@@ -1,6 +1,6 @@
 package de.honoka.test.various.test.movable
 
-import de.honoka.sdk.util.kotlin.basic.PropertyValueContainer
+import de.honoka.sdk.util.kotlin.various.PropertyValueContainer
 import org.junit.Test
 import java.lang.ref.WeakReference
 import java.util.concurrent.TimeUnit
