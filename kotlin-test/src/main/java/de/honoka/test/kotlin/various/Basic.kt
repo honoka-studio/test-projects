@@ -1,39 +1,5 @@
 package de.honoka.test.kotlin.various
 
-@AllOpen
-class Class1 {
-
-    var dynamicField: String = "Field has inited"
-
-    companion object {
-        fun say() {
-            println("OK, It's Kotlin.")
-        }
-
-        @JvmStatic
-        fun jvmStaticMethod() {
-            println("It's JVM Static Method!")
-        }
-
-        @JvmField
-        var staticField: String = "Static Field";
-    }
-
-    fun dynamicMethod(arg: String) {
-        println("Called Dynamic Method: $arg")
-    }
-
-    final inline fun inlineMethod(method: (Int) -> Int) {
-        println("This is Inline Method ${method(123)}")
-        "123".bindedMethodInClass()
-    }
-
-    //Only String objects in this class can call this method.
-    fun String.bindedMethodInClass() {
-        println("This is binded method in class: ${this.length}")
-    }
-}
-
 fun main(args: Array<String>) {
     /*val window = ConsoleWindow("Kotlin", null) {
         println("lambda表达式中的程序退出")
@@ -44,15 +10,15 @@ fun main(args: Array<String>) {
     print("args: ")
     args.forEach { print("$it\t") }
     println()
-    Class1.say()
-    val obj = Class1()
+    AllOpenClass.say()
+    val obj = AllOpenClass()
     //obj.inlineMethod { x -> x + 2 }
     obj.inlineMethod(fun(x): Int {
         return x + 2
     })
     val text = """
          
-        The static field is "${Class1.staticField}", 
+        The static field is "${AllOpenClass.staticField}", 
          
          
         dynamic field is "${obj.dynamicField}".
@@ -122,3 +88,38 @@ fun recvLambdaFun(reciever: String, lambda: String.() -> Unit) {
 private data class NoName(val a: String)
 
 //endregion
+
+@AllOpen
+class AllOpenClass {
+
+    var dynamicField: String = "Field has inited"
+
+    companion object {
+
+        fun say() {
+            println("OK, It's Kotlin.")
+        }
+
+        @JvmStatic
+        fun jvmStaticMethod() {
+            println("It's JVM Static Method!")
+        }
+
+        @JvmField
+        var staticField: String = "Static Field";
+    }
+
+    fun dynamicMethod(arg: String) {
+        println("Called Dynamic Method: $arg")
+    }
+
+    inline fun inlineMethod(method: (Int) -> Int) {
+        println("This is Inline Method ${method(123)}")
+        "123".bindedMethodInClass()
+    }
+
+    //Only String objects in this class can call this method.
+    fun String.bindedMethodInClass() {
+        println("This is binded method in class: ${this.length}")
+    }
+}

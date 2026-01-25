@@ -1,5 +1,6 @@
 package de.honoka.test.kotlin.coroutine
 
+import de.honoka.test.kotlin.printWithThread
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking

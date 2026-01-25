@@ -1,5 +1,6 @@
 package de.honoka.test.kotlin.coroutine
 
+import de.honoka.test.kotlin.printWithThread
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -27,6 +28,7 @@ object CoroutineTest3 {
                 //8.协程3执行完毕，切换到协程4
             }
             //3.在主线程上创建一个新协程4
+            @Suppress("RunBlockingInSuspendFunction")
             runBlocking {
                 //9.协程4开始执行
                 printWithThread("print4")

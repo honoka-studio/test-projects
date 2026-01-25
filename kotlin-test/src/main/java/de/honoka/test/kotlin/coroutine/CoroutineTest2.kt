@@ -1,9 +1,11 @@
 package de.honoka.test.kotlin.coroutine
 
+import de.honoka.test.kotlin.printWithThread
 import kotlinx.coroutines.*
 import java.util.concurrent.Executors
 import kotlin.system.exitProcess
 
+@Suppress("OPT_IN_USAGE")
 object CoroutineTest2 {
 
     @JvmStatic
