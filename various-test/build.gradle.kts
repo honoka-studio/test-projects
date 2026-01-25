@@ -3,9 +3,8 @@ import java.nio.charset.StandardCharsets
 
 plugins {
     java
-    `java-library`
-    `maven-publish`
     alias(libs.plugins.kotlin)
+    alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.kotlin.lombok)
     alias(libs.plugins.honoka.basic)
 }
@@ -17,20 +16,16 @@ java {
     toolchain.languageVersion = JavaLanguageVersion.of(17)
 }
 
-dependencies {
-    implementation(libs.honoka.kotlin.utils)
-    implementation("net.java.dev.jna:jna-platform:5.13.0")
-    implementation("com.sobte.cqp:jcq:1.2.7")
-    implementation("com.baomidou:mybatis-plus:3.5.2")
-    //Test
-    implementation("junit:junit:4.13")
-}
-
 honoka.basic {
     dependencies {
-        kotlin()
         lombok()
+        kotlin()
     }
+}
+
+dependencies {
+    implementation(libs.honoka.kotlin.utils)
+    implementation("org.junit.jupiter:junit-jupiter:5.12.2")
 }
 
 tasks {
@@ -42,17 +37,24 @@ tasks {
         }
     }
 
+    /*
+     * 由于除了原本的compileKotlin任务外，还存在compileTestKotlin和kapt的KaptGenerateStubsTask
+     * （KotlinCompile的子类）任务需要配置，因此这里不能使用“compileKotlin {}”块。
+     */
     withType<KotlinCompile> {
-        withType<KotlinCompile> {
-            compilerOptions {
-                freeCompilerArgs.addAll("-Xjsr305=strict", "-Xjvm-default=all")
-            }
+        compilerOptions {
+            freeCompilerArgs.addAll("-Xjsr305=strict", "-Xjvm-default=all")
         }
     }
 
     withType<Test> {
         useJUnitPlatform()
+        workingDir = rootDir
     }
+}
+
+kapt {
+    keepJavacAnnotationProcessors = true
 }
 
 libs.versions.d.kotlin.coroutines

@@ -1,7 +1,7 @@
-package de.honoka.test.various.test.movable
+package de.honoka.test.various.test
 
-import de.honoka.sdk.util.basic.ThrowsRunnable
 import de.honoka.sdk.util.gui.ConsoleWindow
+import de.honoka.sdk.util.lang.ThrowsRunnable
 
 object ConsoleWindowTest {
 

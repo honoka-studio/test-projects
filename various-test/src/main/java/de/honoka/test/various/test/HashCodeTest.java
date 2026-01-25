@@ -1,4 +1,4 @@
-package de.honoka.test.various.test.movable;
+package de.honoka.test.various.test;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

@@ -1,7 +1,5 @@
 package de.honoka.test.various.old.p3;
 
-import com.sobte.cqp.jcq.message.ActionCode;
-import com.sobte.cqp.jcq.message.CoolQCode;
 import de.honoka.sdk.util.text.EmojiHelper;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -19,34 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.sobte.cqp.jcq.event.JcqApp.CC;
-
 public class AllTest1 {
-
-	//@Test
-	public void coolQCodeTest() {
-		String msg = "文本1" + CC.at(123) + "文本2" +
-				CC.image("~`!@#$%^&*()_+-={};';'\\:\"|,./<>?") + "文本3";
-		System.out.println(msg + "\n");
-		List<String> multiPart = new ArrayList<>();
-		while (msg.contains("[CQ:")) {
-			int cqCodeStart = msg.indexOf("[CQ:");
-			int cqCodeEnd = msg.indexOf("]", cqCodeStart) + 1;
-			multiPart.add(msg.substring(0, cqCodeStart));
-			multiPart.add(msg.substring(cqCodeStart, cqCodeEnd));
-			msg = msg.substring(cqCodeEnd);
-		}
-		multiPart.add(msg);
-		multiPart.forEach(System.out::println);
-		System.out.println();
-		for(String part : multiPart) {
-			if(!part.contains("[CQ:")) continue;
-			CoolQCode cqCode = CC.analysis(part);
-			ActionCode ac = cqCode.get(0);
-			System.out.println(ac.getAction());
-			System.out.println(ac.get("file"));
-		}
-	}
 
 	//@Test
 	public void cityWheatherQueryTest() throws Exception {

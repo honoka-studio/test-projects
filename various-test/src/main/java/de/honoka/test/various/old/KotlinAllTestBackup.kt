@@ -8,13 +8,13 @@ import cn.hutool.core.util.RandomUtil
 import cn.hutool.http.HttpUtil
 import cn.hutool.jwt.JWT
 import de.honoka.sdk.util.concurrent.ThreadPoolUtils
-import de.honoka.sdk.util.kotlin.basic.log
-import de.honoka.sdk.util.kotlin.basic.removeIf
 import de.honoka.sdk.util.kotlin.concurrent.ScheduledTask
 import de.honoka.sdk.util.kotlin.io.ByteBufferIoStream
-import de.honoka.sdk.util.kotlin.net.http.browserApiHeaders
+import de.honoka.sdk.util.kotlin.lang.log
+import de.honoka.sdk.util.kotlin.lang.removeIf
+import de.honoka.sdk.util.kotlin.net.browserApiHeaders
 import de.honoka.sdk.util.kotlin.text.*
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import java.net.InetSocketAddress
 import java.net.ServerSocket
 import java.nio.channels.ServerSocketChannel

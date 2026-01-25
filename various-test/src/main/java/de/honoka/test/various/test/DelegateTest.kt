@@ -1,7 +1,7 @@
-package de.honoka.test.various.test.movable
+package de.honoka.test.various.test
 
-import de.honoka.sdk.util.kotlin.various.DirectDelegate
-import org.junit.Test
+import de.honoka.sdk.util.kotlin.lang.DirectDelegate
+import org.junit.jupiter.api.Test
 
 class DelegateTest {
 

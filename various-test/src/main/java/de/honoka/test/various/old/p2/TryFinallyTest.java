@@ -1,6 +1,6 @@
 package de.honoka.test.various.old.p2;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 //查看下面方法的执行步骤，理解没有catch的try-finally用法
 public class TryFinallyTest {

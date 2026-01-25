@@ -1,4 +1,4 @@
-package de.honoka.test.various.test.movable
+package de.honoka.test.various.test
 
 import java.io.Serializable
 import java.lang.reflect.ParameterizedType

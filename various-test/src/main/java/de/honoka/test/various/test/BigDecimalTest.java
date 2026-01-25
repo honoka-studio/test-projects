@@ -1,6 +1,6 @@
-package de.honoka.test.various.test.movable;
+package de.honoka.test.various.test;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

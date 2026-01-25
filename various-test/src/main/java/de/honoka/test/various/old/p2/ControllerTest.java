@@ -1,6 +1,6 @@
 package de.honoka.test.various.old.p2;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

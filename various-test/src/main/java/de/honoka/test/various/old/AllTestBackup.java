@@ -1,10 +1,9 @@
 package de.honoka.test.various.old;
 
-import de.honoka.sdk.util.basic.ColorfulText;
-import de.honoka.sdk.util.basic.HonokaComparator;
 import de.honoka.sdk.util.file.FileUtils;
+import de.honoka.sdk.util.lang.HonokaComparator;
+import de.honoka.sdk.util.text.ColorfulText;
 import de.honoka.sdk.util.text.TextUtils;
-import de.honoka.sdk.util.various.Retrier;
 import lombok.SneakyThrows;
 
 import java.net.URI;
@@ -61,9 +60,9 @@ public class AllTestBackup {
     //@Test
     public void test15() {
         ColorfulText.of().purple("■ ").aqua("■ ").black("■ ").blue("■ ")
-                .green("■ ").lightAqua("■ ").lightBlue("■ ").lightPurple("■ ")
-                .yellow("■ ").pink("■ ").red("■ ").white("■ ").darkYellow("■ ")
-                .println();
+            .green("■ ").lightAqua("■ ").lightBlue("■ ").lightPurple("■ ")
+            .yellow("■ ").pink("■ ").red("■ ").white("■ ").darkYellow("■ ")
+            .println();
     }
 
     //@Test
@@ -85,30 +84,6 @@ public class AllTestBackup {
             else
                 System.err.println(s);
         }
-    }
-
-    //@Test
-    public void test13() {
-        new Retrier(Exception.class).tryCode(() -> {
-            Random ra = new Random();
-            switch (ra.nextInt(5)) {
-                //case 0:
-                //	System.out.println("Throwable");
-                //	throw new Throwable();
-                case 1:
-                    System.out.println("Exception");
-                    throw new Exception();
-                case 2:
-                    System.out.println("RuntimeException");
-                    throw new RuntimeException();
-                case 3:
-                    System.out.println("IllegalArgumentException");
-                    throw new IllegalArgumentException();
-                default:
-                    System.out.println("Done!");
-            }
-            return null;
-        });
     }
 
     //@Test

@@ -1,6 +1,6 @@
 package de.honoka.test.various.old.p3;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ClassLoaderTest {
 	

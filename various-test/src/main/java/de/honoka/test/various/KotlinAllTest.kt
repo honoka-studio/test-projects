@@ -1,16 +1,17 @@
 package de.honoka.test.various
 
 import cn.hutool.json.JSONObject
-import de.honoka.sdk.util.kotlin.basic.tryCast
+import de.honoka.sdk.util.kotlin.lang.tryCast
 import de.honoka.sdk.util.kotlin.various.RuntimeUtilsExt
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import kotlin.reflect.KClass
 import kotlin.reflect.full.starProjectedType
 import kotlin.reflect.jvm.javaType
 import kotlin.reflect.typeOf
 
+@Suppress("UNCHECKED_CAST")
 class KotlinAllTest {
 
     @Test
@@ -19,7 +20,6 @@ class KotlinAllTest {
         println(json.tryCast<JSONObject>(typeOf<JSONObject>()))
     }
 
-    @Suppress("UNCHECKED_CAST")
     @Test
     fun test23() {
         val type = this::class.starProjectedType

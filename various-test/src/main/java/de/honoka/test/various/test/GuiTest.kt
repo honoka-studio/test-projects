@@ -1,4 +1,4 @@
-package de.honoka.test.various.test.movable
+package de.honoka.test.various.test
 
 import java.awt.Dimension
 import java.awt.event.WindowAdapter

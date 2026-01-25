@@ -6,7 +6,8 @@ gradle-build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 .kotlin/
-/src/main/java/de/honoka/test/various/test/leetcode/
+
+/src/main/java/de/honoka/test/various/leetcode/
 
 ### IntelliJ IDEA ###
 .idea/

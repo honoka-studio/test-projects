@@ -1,7 +1,7 @@
 package de.honoka.test.various.old.p4;
 
-import de.honoka.sdk.util.basic.ColorfulText;
-import org.junit.Test;
+import de.honoka.sdk.util.text.ColorfulText;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
