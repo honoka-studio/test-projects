@@ -1,9 +1,9 @@
 package de.honoka.test.various.old;
 
 import de.honoka.sdk.util.file.FileUtils;
-import de.honoka.sdk.util.lang.HonokaComparator;
 import de.honoka.sdk.util.text.ColorfulText;
 import de.honoka.sdk.util.text.TextUtils;
+import de.honoka.sdk.util.various.HonokaComparator;
 import lombok.SneakyThrows;
 
 import java.net.URI;

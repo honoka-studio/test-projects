@@ -1,7 +1,7 @@
 package de.honoka.test.various;
 
 import cn.hutool.core.map.MapUtil;
-import de.honoka.sdk.util.lang.CodeUtils;
+import de.honoka.sdk.util.various.CodeUtils;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 

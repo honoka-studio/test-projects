@@ -1,8 +1,8 @@
 package de.honoka.test.various
 
 import cn.hutool.json.JSONObject
-import de.honoka.sdk.util.kotlin.lang.tryCast
 import de.honoka.sdk.util.kotlin.various.RuntimeUtilsExt
+import de.honoka.sdk.util.kotlin.various.tryCast
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
@@ -13,6 +13,24 @@ import kotlin.reflect.typeOf
 
 @Suppress("UNCHECKED_CAST")
 class KotlinAllTest {
+
+    @Test
+    fun test25() {
+        val auth = "a*1.b:c+2*_d:E\\-3F*"
+        val regexStr = auth.split("*").joinToString("[^:]+") {
+            if(it.isBlank()) "" else "\\Q$it\\E"
+        }
+        println(regexStr)
+        val regex = Regex(regexStr)
+        val list = listOf(
+            "a1.b:c+2_d:E\\-3F",
+            "a01.b:c+20_d:E\\-3F0",
+            "a01.b:c+20_d:E\\-3F"
+        )
+        list.forEach {
+            println(regex.matches(it))
+        }
+    }
 
     @Test
     fun test24() {

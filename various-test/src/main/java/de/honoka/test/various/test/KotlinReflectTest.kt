@@ -1,6 +1,6 @@
 package de.honoka.test.various.test
 
-import de.honoka.sdk.util.kotlin.lang.PropertyValueContainer
+import de.honoka.sdk.util.kotlin.various.PropertyValueContainer
 import org.junit.jupiter.api.Test
 import java.lang.ref.WeakReference
 import java.util.concurrent.TimeUnit

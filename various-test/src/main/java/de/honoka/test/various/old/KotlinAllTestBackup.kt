@@ -10,10 +10,10 @@ import cn.hutool.jwt.JWT
 import de.honoka.sdk.util.concurrent.ThreadPoolUtils
 import de.honoka.sdk.util.kotlin.concurrent.ScheduledTask
 import de.honoka.sdk.util.kotlin.io.ByteBufferIoStream
-import de.honoka.sdk.util.kotlin.lang.log
-import de.honoka.sdk.util.kotlin.lang.removeIf
-import de.honoka.sdk.util.kotlin.net.browserApiHeaders
 import de.honoka.sdk.util.kotlin.text.*
+import de.honoka.sdk.util.kotlin.various.log
+import de.honoka.sdk.util.kotlin.various.removeIf
+import de.honoka.sdk.util.kotlin.web.browserApiHeaders
 import org.junit.jupiter.api.Test
 import java.net.InetSocketAddress
 import java.net.ServerSocket
