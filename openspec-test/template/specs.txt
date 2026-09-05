@@ -1,0 +1,143 @@
+<artifact id="specs" change="task-1" schema="spec-driven">
+
+<warning>
+This artifact has unmet dependencies. Complete them first or proceed with caution.
+Missing: proposal
+</warning>
+
+<task>
+Create the specs artifact for change "task-1".
+Detailed specifications for the change
+</task>
+
+<dependencies>
+Read the current contents of these files before creating this artifact (re-read them from disk even if you saw them earlier - they may have been edited):
+
+<dependency id="proposal" status="missing">
+  <path>C:\Personal\Projects\Temp\openspec-test\openspec\changes\task-1\proposal.md</path>
+  <description>Initial proposal document outlining the change</description>
+</dependency>
+</dependencies>
+
+<output>
+Write to: C:\Personal\Projects\Temp\openspec-test\openspec\changes\task-1\specs\**\*.md
+</output>
+
+<instruction>
+Create specification files that define WHAT the system should do.
+
+A spec is a behavior contract, not an implementation plan.
+
+Good spec content:
+- Observable behavior users or downstream systems rely on
+- Inputs, outputs, and error conditions
+- External constraints (security, privacy, reliability, compatibility)
+- Scenarios that can be tested or explicitly validated
+
+Avoid in specs:
+- Internal class/function names
+- Library or framework choices
+- Step-by-step implementation details
+- Detailed execution plans (those belong in design.md or tasks.md)
+
+Quick test: if the implementation can change without changing externally
+visible behavior, it likely does not belong in the spec.
+
+Create one spec file per capability listed in the proposal's Capabilities section.
+`<capability-path>` is the spec directory relative to `specs/` (for example,
+`user-auth` or `identity/user-auth`). Preserve the full path:
+- New capabilities: use the exact path from the proposal at `specs/<capability-path>/spec.md`. Any path segment newly introduced in the proposal must be kebab-case. Follow the project's existing organization; do not add a new domain level when the project uses a flat layout.
+- Modified capabilities: use the exact existing path from `openspec/specs/<capability-path>/` when creating the delta at `specs/<capability-path>/spec.md`. Do not move or rename the capability.
+
+There must be at least one spec file unless the change's `.openspec.yaml`
+sets `skip_specs: true` (no spec-level behavior change) - `openspec validate`
+rejects a zero-delta change without that marker. If the proposal lists no
+capabilities and `skip_specs` is not set, revisit the proposal first.
+
+Delta operations (use ## headers):
+- **ADDED Requirements**: New capabilities
+- **MODIFIED Requirements**: Changed behavior - MUST include full updated content
+- **REMOVED Requirements**: Deprecated features - MUST include **Reason** and **Migration**
+- **RENAMED Requirements**: Name changes only - use FROM:/TO: format
+
+Format requirements:
+- Each requirement: `### Requirement: <name>` followed by description
+- Use SHALL/MUST for normative requirements (avoid should/may)
+- Each scenario: `#### Scenario: <name>` with WHEN/THEN format
+- **CRITICAL**: Scenarios MUST use exactly 4 hashtags (`####`). Using 3 hashtags or bullets will fail silently.
+- Every requirement MUST have at least one scenario.
+
+New capabilities only: start the delta spec with a `## Purpose` section -
+one or two sentences (50+ characters, or `openspec validate --strict`
+reports it as too brief) describing what the capability is for. Archive
+copies it into the main spec it creates; without it the new main spec is
+left with a `TBD ... Update Purpose after archive` placeholder to fill in
+by hand. Do NOT add `## Purpose` to a delta for an existing capability -
+that spec already has one and the delta's is ignored. To change an
+existing capability's Purpose - including a leftover `TBD` placeholder -
+edit `<planningHome.root>/openspec/specs/<capability-path>/spec.md`
+directly. `planningHome.root` comes from the `openspec instructions ...
+--json` response. Always use it rather than a repo-relative path: it
+resolves to the store whenever the change lives in one - whether that
+came from `--store`, a project `store:` pointer, or a global default
+store - and to the current repository otherwise. Do not try to work out
+which case applies; the field already has.
+
+MODIFIED requirements workflow:
+1. Locate the existing requirement in `<planningHome.root>/openspec/specs/<capability-path>/spec.md` (the same store-aware root as above)
+2. Copy the ENTIRE requirement block (from `### Requirement:` through all scenarios)
+3. Paste under `## MODIFIED Requirements` and edit to reflect new behavior
+4. Ensure header text matches exactly (whitespace-insensitive)
+
+Common pitfall: Using MODIFIED with partial content loses detail at archive time.
+If adding new concerns without changing existing behavior, use ADDED instead.
+
+Example (a new capability, so it opens with `## Purpose`):
+```
+## Purpose
+
+Lets users take their data out of the product in a portable format.
+
+## ADDED Requirements
+
+### Requirement: User can export data
+The system SHALL allow users to export their data in CSV format.
+
+#### Scenario: Successful export
+- **WHEN** user clicks "Export" button
+- **THEN** system downloads a CSV file with all user data
+
+## REMOVED Requirements
+
+### Requirement: Legacy export
+**Reason**: Replaced by new export system
+**Migration**: Use new export endpoint at /api/v2/export
+```
+
+Specs should be testable - each scenario is a potential test case.
+</instruction>
+
+<template>
+<!-- Use this as the structure for your output file. Fill in the sections. -->
+## Purpose
+<!-- New capabilities only: one or two sentences (50+ characters) on what this capability is for. Delete this section for an existing capability. -->
+
+## ADDED Requirements
+
+### Requirement: <!-- requirement name -->
+<!-- requirement text -->
+
+#### Scenario: <!-- scenario name -->
+- **WHEN** <!-- condition -->
+- **THEN** <!-- expected outcome -->
+</template>
+
+<success_criteria>
+<!-- To be defined in schema validation rules -->
+</success_criteria>
+
+<unlocks>
+Completing this artifact enables: tasks
+</unlocks>
+
+</artifact>

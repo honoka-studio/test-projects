@@ -1,0 +1,87 @@
+<artifact id="design" change="task-1" schema="spec-driven">
+
+<warning>
+This artifact has unmet dependencies. Complete them first or proceed with caution.
+Missing: proposal
+</warning>
+
+<task>
+Create the design artifact for change "task-1".
+Technical design document with implementation details
+</task>
+
+<dependencies>
+Read the current contents of these files before creating this artifact (re-read them from disk even if you saw them earlier - they may have been edited):
+
+<dependency id="proposal" status="missing">
+  <path>C:\Personal\Projects\Temp\openspec-test\openspec\changes\task-1\proposal.md</path>
+  <description>Initial proposal document outlining the change</description>
+</dependency>
+</dependencies>
+
+<output>
+Write to: C:\Personal\Projects\Temp\openspec-test\openspec\changes\task-1\design.md
+</output>
+
+<instruction>
+Create the design document that explains HOW to implement the change.
+
+When to include design.md (create only if any apply):
+- Cross-cutting change (multiple services/modules) or new architectural pattern
+- New external dependency or significant data model changes
+- Security, performance, or migration complexity
+- Ambiguity that benefits from technical decisions before coding
+
+Sections:
+- **Context**: Only the current state and constraints needed to explain the approach. Reference the proposal for motivation instead of restating it (e.g., "See proposal.md - Why").
+- **Goals / Non-Goals**: What this design achieves and explicitly excludes. Don't restate the proposal's scope - add only design-level boundaries.
+- **Decisions**: Key technical choices with rationale (why X over Y?). Include alternatives considered for each decision.
+- **Risks / Trade-offs**: Known limitations, things that could go wrong. Format: [Risk] → Mitigation
+- **Migration Plan**: Steps to deploy, rollback strategy (if applicable)
+- **Open Questions**: Unknowns that can safely be answered later without
+  changing the specs, the approach, or the task breakdown. Omit if none.
+
+Open questions are for genuinely deferrable unknowns, not decisions you
+skipped. If a question would change the specs, the chosen approach, or
+the task breakdown, resolve it now - ask the user instead of guessing.
+
+Focus on architecture and approach, not line-by-line implementation.
+The proposal covers why and what; design covers how. Reference the
+proposal for motivation and, once written, the specs for requirements -
+if a section would only restate them, point to them instead.
+
+Good design docs explain the "why" behind technical decisions.
+</instruction>
+
+<template>
+<!-- Use this as the structure for your output file. Fill in the sections. -->
+## Context
+
+<!-- Current state and constraints that shape the approach. See proposal.md for motivation - don't restate it -->
+
+## Goals / Non-Goals
+
+**Goals:**
+<!-- What this design aims to achieve -->
+
+**Non-Goals:**
+<!-- What is explicitly out of scope -->
+
+## Decisions
+
+<!-- Key design decisions with rationale and alternatives considered -->
+
+## Risks / Trade-offs
+
+<!-- Known risks and trade-offs -->
+</template>
+
+<success_criteria>
+<!-- To be defined in schema validation rules -->
+</success_criteria>
+
+<unlocks>
+Completing this artifact enables: tasks
+</unlocks>
+
+</artifact>

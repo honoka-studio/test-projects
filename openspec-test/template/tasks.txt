@@ -1,0 +1,84 @@
+<artifact id="tasks" change="task-1" schema="spec-driven">
+
+<warning>
+This artifact has unmet dependencies. Complete them first or proceed with caution.
+Missing: specs, design
+</warning>
+
+<task>
+Create the tasks artifact for change "task-1".
+Implementation checklist with trackable tasks
+</task>
+
+<dependencies>
+Read the current contents of these files before creating this artifact (re-read them from disk even if you saw them earlier - they may have been edited):
+
+<dependency id="specs" status="missing">
+  <path>C:\Personal\Projects\Temp\openspec-test\openspec\changes\task-1\specs\**\*.md</path>
+  <description>Detailed specifications for the change</description>
+</dependency>
+<dependency id="design" status="missing">
+  <path>C:\Personal\Projects\Temp\openspec-test\openspec\changes\task-1\design.md</path>
+  <description>Technical design document with implementation details</description>
+</dependency>
+</dependencies>
+
+<output>
+Write to: C:\Personal\Projects\Temp\openspec-test\openspec\changes\task-1\tasks.md
+</output>
+
+<instruction>
+Create the task list that breaks down the implementation work.
+
+Before writing tasks, check design.md for Open Questions. If any of them
+would change what gets built, resolve them with the user first - do not
+bake an unstated assumption into the task list.
+
+**IMPORTANT: Follow the template below exactly.** The apply phase parses
+checkbox format to track progress. Tasks not using `- [ ]` won't be tracked.
+
+Guidelines:
+- Group related tasks under ## numbered headings
+- Each task MUST be a checkbox: `- [ ] X.Y Task description`
+- Tasks should be small enough to complete in one session
+- Order tasks by dependency (what must be done first?)
+- Each task MUST state how to verify completion (a test, command,
+  observable behavior, or delivered artifact). Put the verification in
+  that task's checkbox description. Use a separate verification task only
+  when it checks broader integration or system behavior that spans
+  multiple implementation tasks.
+
+Example:
+```
+## 1. Setup
+
+- [ ] 1.1 Create new module structure and verify expected files are present
+- [ ] 1.2 Add dependencies to package.json and verify package installation succeeds
+
+## 2. Core Implementation
+
+- [ ] 2.1 Implement data export function and verify the export test passes
+- [ ] 2.2 Add CSV formatting utilities and verify unit tests cover quoting and delimiters
+```
+
+Reference specs for what needs to be built, design for how to build it.
+</instruction>
+
+<template>
+<!-- Use this as the structure for your output file. Fill in the sections. -->
+## 1. <!-- Task Group Name -->
+
+- [ ] 1.1 <!-- Task description -->
+- [ ] 1.2 <!-- Task description -->
+
+## 2. <!-- Task Group Name -->
+
+- [ ] 2.1 <!-- Task description -->
+- [ ] 2.2 <!-- Task description -->
+</template>
+
+<success_criteria>
+<!-- To be defined in schema validation rules -->
+</success_criteria>
+
+</artifact>
